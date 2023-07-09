@@ -61,7 +61,7 @@ streamlit.write('Thanks for adding', fruit_choice)
 
 #my_cur.execute("insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST values ('test')");
 
-def insert_row_snowflake(new_fruit)
+def insert_row_snowflake(new_fruit):
     with my_cnx.cursor() as my_cur:
          my_cur.execute("insert into fruit_load_list values('from streamlit')")
          return "Thanks for adding" + new_fruit
