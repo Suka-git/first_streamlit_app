@@ -21,7 +21,7 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 streamlit.dataframe(fruits_to_show)
 streamlit.header("Fruityvice Fruit Advice!")
 
-  #create repeatable code called function
+#create repeatable code called function
 def get_fruityvice_data(this_fruit_choice):
      fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+this_fruit_choice)
      fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
@@ -34,13 +34,8 @@ try:
   else:
         back_from_function=get_fruityvice_data(fruit_choice)
         streamlit.dataframe(back_from_function)
-
 except URLError as e:
        streamlit.error()
-
-#connect to snowflake  
-
-
 
 streamlit.header("The Fruit load list contains:")
 #Snowflake related functions
@@ -54,12 +49,6 @@ def get_fruit_load_list():
 if streamlit.button('Get fruit load list'):
    my_data_rows = get_fruit_load_list()
    streamlit.dataframe(my_data_rows)
-
-#add text entry box
-fruit_choice = streamlit.text_input('What fruit would you like to add?','Kiwi')
-streamlit.write('Thanks for adding', fruit_choice)
-
-#my_cur.execute("insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST values ('test')");
 
 def insert_row_snowflake(new_fruit):
     with my_cnx.cursor() as my_cur:
